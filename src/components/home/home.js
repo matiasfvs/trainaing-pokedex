@@ -1,11 +1,11 @@
-
-import React,{useEffect, useState} from 'react'
-import {Container} from '@mui/material'
-import axios from 'axios'
+import React, { useEffect } from 'react';
+import { Container,Grid } from '@mui/material';
+import axios from 'axios';
+import CardPokemon from '../common-components/card-component';
 
 const homeViewer = () => {
-  const [dataPokemon, setDataPokemon] = useState();
-  const [loading, setLoading] = useState(false);
+  const [dataPokemon, setDataPokemon] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
 
   const fetchPokemonList = () => {
     setLoading(true);
@@ -29,18 +29,25 @@ const homeViewer = () => {
 };
 
 const Home = () => {
- const {dataPokemon,fetchPokemonList} = homeViewer()
+  const { dataPokemon, fetchPokemonList } = homeViewer();
 
- useEffect(() => {
-  fetchPokemonList()
- },[])
+  useEffect(() => {
+    fetchPokemonList();
+  }, []);
 
-  return(
-  <Container>
-    {JSON.stringify(dataPokemon)}
+  return (
+    <Container>
+    {/* Renderizar los datos de los pokemones */}
+      {/* Renderizar los datos de los pokemones */}
+      <Grid container spacing={2}>
+        {dataPokemon.map(pokemon => (
+          <Grid item key={pokemon.name} xs={12} lg={4}>
+            <CardPokemon pokemonData={pokemon} />
+          </Grid>
+        ))}
+      </Grid>
   </Container>
-  )
+  );
+};
 
-  }
-
-export default Home
+export default Home;
