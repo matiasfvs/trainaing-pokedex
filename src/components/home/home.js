@@ -50,6 +50,7 @@ const Home = () => {
   return (
     <Container>
       {/* Renderizar los datos de los pokemones */}
+      <p>Aqui trabaja reno</p>
       <SearchBar onSearch={handleSearch} /> {/* Acá se integra el componente de búsqueda*/}
       <Grid container spacing={2}>
         {(filteredData.length > 0 ? filteredData : dataPokemon).map(pokemon => (
