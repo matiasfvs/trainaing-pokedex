@@ -29,7 +29,7 @@ const MenuPag = () => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              POKEDEX
+              POKEDEXxxxxxxxxxxxxxxxx
             </Typography>
             <Button color="inherit">{t('menuItemFeatures.Login')}</Button>
           </Toolbar>
