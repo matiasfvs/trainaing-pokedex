@@ -50,6 +50,7 @@ const Home = () => {
   return (
     <Container>
       {/* Renderizar los datos de los pokemones */}
+      <h1>POKEDEX</h1>
       <p>Aqui trabaja reno</p>
       <SearchBar onSearch={handleSearch} /> {/* Acá se integra el componente de búsqueda*/}
       <Grid container spacing={2}>
