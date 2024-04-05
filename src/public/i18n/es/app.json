@@ -1,5 +1,8 @@
 {
     "menuItemFeatures":{
         "Login":"Entrar"
+    },
+    "searchItemFeatures":{
+        "Search":"Encontrar"
     }
 }

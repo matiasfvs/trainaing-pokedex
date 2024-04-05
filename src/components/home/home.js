@@ -21,11 +21,16 @@ const homeViewer = () => {
       });
   };
 
+  const searchButton = (value) =>{
+    console.log('BOTON',value)
+  }
+
   // Retornar un objeto con las variables y funciones
   return {
     dataPokemon,
     loading,
-    fetchPokemonList
+    fetchPokemonList,
+    searchButton
   };
 };
 
