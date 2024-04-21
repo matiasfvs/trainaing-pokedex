@@ -42,12 +42,19 @@ const CardPokemon = ({ pokemonData }) => {
     setOpenModal(false);
   };
 
+  // Función para obtener el número de la Pokédex con el formato adecuado
+  const getPokedexNumber = (url) => {
+    const parts = url.split('/');
+    const pokemonId = parts[parts.length - 2]; // Obtiene el ID del Pokémon desde la URL
+    return pokemonId.padStart(3, '0'); // Rellena con ceros a la izquierda para tener 3 dígitos
+  };
+
   return (
     <>
       <Card sx={{ minWidth: 275 }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {JSON.stringify(pokemonData.name)}
+            {`${getPokedexNumber(pokemonData.url)} - ${pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}`} {/* Muestra el número de la Pokédex y el nombre del Pokémon */}
             {loading ? "Loading..." : dataUrl && <img src={dataUrl.sprites.front_default} alt={pokemonData.name} />}
           </Typography>
         </CardContent>

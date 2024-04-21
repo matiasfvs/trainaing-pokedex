@@ -1,65 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Grid } from '@mui/material';
-import axios from 'axios';
-import CardPokemon from '../common-components/card-component';
-import SearchBar from '../common-components/search-component'; // Aqui se importa el componentillo SearchBar
-
-const homeViewer = () => {
-  const [dataPokemon, setDataPokemon] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const fetchPokemonList = () => {
-    setLoading(true);
-    axios.get('https://pokeapi.co/api/v2/pokemon?limit=151')
-      .then(response => {
-        setDataPokemon(response.data.results);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching Pokemon list:', error);
-        setLoading(false);
-      });
-  };
-
-  const searchButton = (value) =>{
-    console.log('BOTON',value)
-  }
-
-  // Retornar un objeto con las variables y funciones
-  return {
-    dataPokemon,
-    loading,
-    fetchPokemonList,
-    searchButton
-  };
-};
+import React from 'react';
+import { Container } from '@mui/material';
+import ContainerPrincipal from '../common-components/ContainerPrincipal';
+import Nav from '../header/nav'; // Importa el componente Nav
+import '../../styles/styles.css'; // Importa el archivo de estilos desde la carpeta src/styles
 
 const Home = () => {
-  const { dataPokemon, fetchPokemonList } = homeViewer();
-  const [filteredData, setFilteredData] = useState([]); //Se fija esta constante con las variables de estado filteredData y setFilteredData especificadas en el search-component.js
-
-  useEffect(() => {
-    fetchPokemonList();
-  }, []);
-
-  const handleSearch = (searchTerm) => {
-    const filtered = dataPokemon.filter(pokemon => pokemon.name.includes(searchTerm.toLowerCase()));
-    setFilteredData(filtered);
-  };
-
   return (
     <Container>
-      {/* Renderizar los datos de los pokemones */}
-      <h1>POKEDEX</h1>
-      <p>Aqui trabaja reno</p>
-      <SearchBar onSearch={handleSearch} /> {/* Acá se integra el componente de búsqueda*/}
-      <Grid container spacing={2}>
-        {(filteredData.length > 0 ? filteredData : dataPokemon).map(pokemon => (
-          <Grid item key={pokemon.name} xs={12} lg={4}>
-            <CardPokemon pokemonData={pokemon} />
-          </Grid>
-        ))}
-      </Grid>
+      <Nav />
+      <ContainerPrincipal />
     </Container>
   );
 };

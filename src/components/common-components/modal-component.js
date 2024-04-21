@@ -52,6 +52,13 @@ const PokemonModal = ({ open, onClose, pokemonData }) => {
     }
   }, [open, pokemonData.url]);
 
+  // Función para obtener el número de la Pokédex con el formato adecuado
+  const getPokedexNumber = (url) => {
+    const parts = url.split('/');
+    const pokemonId = parts[parts.length - 2]; // Obtiene el ID del Pokémon desde la URL
+    return pokemonId.padStart(3, '0'); // Rellena con ceros a la izquierda para tener 3 dígitos
+  };
+
   return (
     <Modal
       open={open}
@@ -62,7 +69,7 @@ const PokemonModal = ({ open, onClose, pokemonData }) => {
     >
       <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 600, backgroundColor: 'white', border: '2px solid #000', boxShadow: 24, p: 4 }}>
         <Typography id="modal-title" variant="h6" component="h2">
-          {pokemonData.name}
+          {`${getPokedexNumber(pokemonData.url)} - ${pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}`} {/* Muestra el número de la Pokédex y el nombre del Pokémon */}
         </Typography>
         <Typography id="modal-description" sx={{ mt: 2 }}>
           {loading ? "Loading..." : (
